@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HERO FACTORY 👀</title>
+     <!---프리덴다드-->
+     <link rel="stylesheet" as="style" 
+     crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+     <script src="https://kit.fontawesome.com/48044b8978.js" crossorigin="anonymous"></script><!--폰트어썸-->
+    <link rel="stylesheet" href="created.css">
+    
+
+
+
+        <!------// 파비콘 시작 -->
+        <link rel="apple-touch-icon" sizes="57x57" href="/favi/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/favi/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/favi/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/favi/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/favi/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/favi/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/favi/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/favi/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/favi/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="../store/favi/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../store/favi/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="../store/favi/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../store/favi/favicon-16x16.png">
+        <!----// 파비콘 끝-->
+        
+</head>
+<body>
+    <video autoplay muted loop playsinline class="background-video" id="backgroundVideo">
+        <source src="SR1.mp4" type="video/mp4">
+    </video>
+    
+    <div id="content">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo"><a href="created.html"><img src="img/LOGO2.png"></div></a>
+            <nav class="nav">
+           
+                <button class="nav-button" onclick="window.location.href='../created/created.html'"><img src="icon/object.png">Object</button>
+                <!-- <button class="nav-button active"><img src="icon/dashboard6.png">Dashboard</button> -->
+                <button class="nav-button  active" onclick="window.location.href='../created/created_sub.html'"><img src="icon/ani.png">Splight Sheet</button>
+                <button class="nav-button"><img src="icon/ani.png">UI/UX<div class="tooltip">준비중</div></button>
+                <button class="nav-button"><img src="icon/ui.png">Animation<div class="tooltip">준비중</div></button>  
+            </nav>
+            <div class="user-section">
+                <div class="guide">
+                    <span class="info-icon" id="infoButton"><img src="icon/ii.png"></span>
+                    <span class="info-txt">가이드</span>
+                </div>
+                <div class="notification">
+                    <img src="img/bell.png" alt="Notification Icon" class="notification-icon" id="bellButton">
+                    <span class="notification-count">1</span>
+                    <div class="notification-toggle" id="notificationToggle">
+                        <div class="toggle-content">
+                            <img src="img/android-icon-72x72.png" alt="User Icon">
+                            <div>
+                                <p class="notification-bold">PC로 접속 하셨습니다.</p>
+                                <p class="notification-light">[기기 로그인 알림]</p>
+                            </div>
+                        </div>
+                        <div class="button-container">
+                            <button class="store-button">
+                                <img src="../created/icon/shop.png" alt="Store Icon"> 스토어 이동
+                            </button>
+                            <button class="logout-button">
+                                <img src="../created/icon/logout.png" alt="Logout Icon"> 로그아웃
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile">
+                    <img src="img/profile.jpg" alt="Profile Image" class="profile-image">
+                    <span>이영지님 환영합니다<br><small>일반회원</small></span>
+                </div>
+            </div>
+        </header>
+        
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Section -->
+            <div class="left-section">
+                <div class="left-section-overlay"> 스프라이트시트는 드로잉이 <br> 사용되지 않습니다. </div><!--left overlay-->
+                <!-- Drawing Area -->
+                <div class="drawing-area-container">
+                    <div class="section-header">
+                        <span class="section-title">Drawing Area</span>
+                        <span class="section-subtitle">드로잉영역</span>
+                        <!-- <span class="info-icon">i</span> -->
+                    </div>
+                    <canvas class="drawing-area" id="drawingCanvas"></canvas>
+
+                </div>
+
+                <!-- Tool Area -->
+                <div class="tool-area-container">
+                    <div class="section-header">
+                        <span class="section-title">Tool Area</span>
+                        <span class="section-subtitle">작업영역</span>
+                        <!-- <span class="info-icon">i</span> -->
+                    </div>
+                    <div class="tool-area">
+                        <div class="toolbar">
+                            <button id="pencilButton" class="tool-button">
+                                <img src="icon/pencil.png" alt="연필" class="tool-icon" id="pencilIcon">
+                            </button>
+                            <button id="eraserButton" class="tool-button">
+                                <img src="icon/eraser_active.png" alt="지우개" class="tool-icon" id="eraserIcon">
+                            </button>
+                            <button id="undoButton" class="tool-button">
+                                <img src="icon/undo.png" alt="되돌리기" class="tool-icon" id="undoIcon">
+                            </button>
+                            <button id="redoButton" class="tool-button">
+                                <img src="icon/redo.png" alt="다음으로" class="tool-icon" id="redoIcon">
+                            </button>
+                            <button id="clearButton" class="tool-button">
+                                <img src="icon/clear.png" alt="모두 지우기" class="tool-icon" id="clearIcon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center Section -->
+            <div class="center-section">
+                <!-- Prompt Area -->
+                <div class="prompt-area-container">
+                    <div class="section-header">
+                        <span class="section-title">Prompt</span>
+                        <span class="section-subtitle">입력영역</span>
+                        <!-- <span class="info-icon">i</span>  -->
+                    </div>
+                    <div class="prompt-area">
+                        <textarea class="prompt-input" 
+                        placeholder="칼을 들고 있는 사람의 모습, 흰색 바탕" 
+                        spellcheck="false"></textarea>
+                      <span class="tab-indicator">tab</span>
+                        <button class="create-button"><img src="icon/test.png">이미지 만들기</button>
+                    </div>
+                </div>
+
+                <!-- Recommendation Area -->
+                <div class="recommendation-area-container">
+                    <div class="section-header">
+                        <span class="section-title">Recommendation</span>
+                        <span class="section-subtitle">추천</span>
+                        <!-- <span class="info-icon">i</span> -->
+                       <!-- 버튼 2개 오른쪽 끝에 배치 -->
+                       <div class="button-group">
+                        <button class="icon-button copy-btn">
+                            <img src="icon/copy8.png">
+                            <div class="tooltip" id="tooltipCopy" style="display: none;">프롬프트 복사</div>
+                        </button>
+                        
+                       
+                    </div>
+                    </div>
+                    <!-- 복사 완료 알림 문구 -->
+
+
+                    <div class="recommendation-area" style="width:485px;">
+                        <div id="copyAlert">
+                            텍스트가 복사되었습니다!
+                        </div>
+                        <div class="prompt-text">여기는 추천이 나오는 곳입니다.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Section -->
+            <div class="right-section">
+                <div class="section-header">
+                    <span class="section-title">Image output area</span>
+                    <span class="section-subtitle">이미지 출력되는 영역</span>
+                </div>
+                <div class="create-image-area">
+                    <div class="Generation area">
+                        <!--로딩-->
+                        <div id="loading-animation"  style="display:none">
+                            <div id="loader">
+                                <div class="cube-folding">
+                                    <span class="leaf1"></span>
+                                    <span class="leaf2"></span>
+                                    <span class="leaf3"></span>
+                                    <span class="leaf4"></span>
+                                </div>
+                            </div>
+                        </div> 
+                        <!--//로딩 끝-->
+                        <!--//이미지 나오는 영역-->
+                        <div class="Result">
+                            <img src="img/last-splight.jpg" id="generated-image">
+                            <div class="bottom-image-buttons">
+                                <button class="Result-button" id="saveButton">
+                                    <img src="icon/save2.png" alt="Save">
+                                    <div class="tooltip tooltip-save">저장</div>
+                                </button>
+                                <button class="Result-button" id="shareButton">
+                                    <img src="icon/share-copy.png" alt="Share">
+                                    <div class="tooltip tooltip-share">공유</div>
+                                </button>
+                            </div>
+                            
+                            
+                        </div>
+                        
+                        <!--//이미지 나오는 영역-->
+                    </div><!--생성영역-->
+
+                </div>
+                <div class="style-tabs">
+                    <button class="tab-button active">Style 스타일</button>
+                    <button class="tab-button">Seed 시드</button>
+                </div>
+                <div class="recommendation-area style">
+                    <div class="range-slider-container">
+                        <span class="range-label">조절 레벨</span>
+                        <div class="range-controls">
+                            <span class="range-value">0</span>
+                            <img src="icon/smile1.png" class="range-icon" alt="Sad Icon">
+                            <input type="range" max="100" min="0" value="0" class="range-slider" id="styleSlider">
+                            <span id="rangeTooltip2" class="tooltip2">0</span>
+                            <img src="icon/smile2.png" class="range-icon" alt="Happy Icon">
+                            <span class="range-value">100</span>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+
+                <div class="recommendation-area seed">
+                    <div class="prompt-text" id="promptText">
+                        <span>563542</span>
+                        
+                        <div class="key" id="lockIcon">
+                            <img src="icon/lock11.png" alt="Lock Icon">
+                        </div>
+                    </div>
+                    <span class="seed-text">시드가 잠금 해제되어 출력이 더욱 다양하게 제공됩니다.</span>
+                </div> 
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- // 설명 오버레이 ---------------------------------------------------------------------------------------------------------------------------->
+    <div class="overlay overlay-outer" style="display: none;">
+        <!-- <div class="overlay-content"> -->
+            <!-- 닫기 버튼 -->
+            <button class="close-btn" id="closeOverlay"><i class="fa-solid fa-x"></i></button>
+            <button class="skip-btn" id="skipButton">건너뛰기</button>
+
+            <!-- 슬라이드 컨테이너 -->
+            <div class="slide-container">
+                <div class="slide active">
+                    <img src="../img/guide-img/guide1.jpg">
+                </div>
+                <div class="slide">
+                    <img src="../img/guide-img/guide2.jpg">
+                </div>
+                <div class="slide">
+                    <img src="../img/guide-img/guide3.jpg">
+                </div>
+                <div class="slide">
+                    <img src="../img/guide-img/guide4.jpg">
+                </div>
+                <div class="slide">
+                    <img src="../img/guide-img/guide5.jpg">
+                </div>
+                <div class="slide">
+                    <img src="../img/guide-img/guide6.jpg">
+                </div>
+                <div class="slide">
+                    <img src="../img/guide-img/guide7.jpg">
+                </div>
+                <div class="slide">
+                    <img src="../img/guide-img/guide8.jpg">
+                </div>
+                <div class="slide">
+                    <img src="../img/guide-img/guide9.jpg">
+                </div>
+                <div class="slide">
+                    <img src="../img/guide-img/guide9-2.jpg">
+                </div>
+
+            </div>
+
+            <!-- 화살표 버튼 -->
+            <button class="arrow left-arrow" id="prevSlide"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="arrow right-arrow" id="nextSlide"><i class="fa-solid fa-chevron-right"></i></button>
+
+            <!-- 하단 안내 메시지 -->
+            <div class="bottom-message animated-border">
+                <div class="animated-border-inner">
+                 히어로 팩토리 사용법에 대해 알려드릴게요!
+                </div>
+            </div>
+            <!-- 페이지네이션 -->
+            <div class="pagination">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        <!-- </div> -->
+    </div>
+<!-- // 설명 오버레이 ---------------------------------------------------------------------------------------------------------------------------->
+
+  <!-- 알림페이지 모달-->
+    <div class="alert-overlay" id="alertOverlay">
+        <div class="alert-box">
+            <div class="alert-icon"><img src="img/alram9.png"></div>
+            <h2>알림</h2>
+            <p>이미지를 생성하려면 <b>프롬프트</b>에<br>설명을 입력해 주세요.</p>
+            <button id="alertCloseButton">닫기</button>
+        </div>
+    </div>
+    <!-- 알림페이지 모달-->
+    
+    <style>
+        /* 드로잉영역 숨기기 */
+        .left-section {
+            position: relative;
+        }
+
+        .left-section-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 97%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); 
+            color: rgb(100, 100, 100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            z-index: 10;
+            pointer-events: none; 
+            text-align: center;
+        }
+        .left-section .drawing-area {
+            width: 510px;
+            height: 510px;
+            background-color: #1a1a1a;
+            border: none;
+            /* border-radius: 4px; */
+        }
+        .left-section .section-subtitle, .left-section .section-title{
+            color:#222;
+        }
+        .left-section .toolbar > button img {opacity: 0.2;}
+       
+        /*  드로잉영역 오버레이 빗금 */
+        .left-section-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 97%;
+            height: 100%;
+            background-color: rgb(0 0 0 / 50%);
+            color: #dbdbdb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            z-index: 10;
+            pointer-events: none;
+            background-image: linear-gradient(135deg, rgb(141 141 141 / 20%) 25%, #62626200 25%, transparent 50%, rgb(129 129 129 / 20%) 50%, rgb(88 88 88 / 20%) 75%, transparent 75%, transparent);
+            background-size: 4px 4px;
+            }
+
+         /* // 드로잉영역 숨기기 */
+    </style>
+
+
+    <script>
+        /* 드로잉 막기 */
+            document.addEventListener("DOMContentLoaded", () => {
+            const canvas = document.getElementById("drawingCanvas");
+            const overlay = document.querySelector(".left-section-overlay");
+
+            if (canvas && overlay) {
+                // 캔버스의 포인터 이벤트를 막아 클릭이나 드로잉이 불가능하도록 설정
+                canvas.style.pointerEvents = "none";
+            } else {
+                console.error("캔버스 또는 오버레이 요소를 찾을 수 없습니다.");
+            }
+            });
+
+            /* 드로잉 툴 막기 */
+
+            document.addEventListener("DOMContentLoaded", () => {
+            const canvas = document.getElementById("drawingCanvas");
+            const toolButtons = document.querySelectorAll(".tool-area-container .tool-button");
+
+            if (canvas) {
+                // 캔버스의 포인터 이벤트를 막아 클릭이나 드로잉이 불가능하도록 설정
+                canvas.style.pointerEvents = "none";
+            } else {
+                console.error("캔버스 요소를 찾을 수 없습니다.");
+            }
+
+            if (toolButtons) {
+                // tool-area-container 내부의 버튼들만 클릭이 되지 않도록 설정
+                toolButtons.forEach(button => {
+                    button.style.pointerEvents = "none";
+                });
+            } else {
+                console.error("tool-area-container 내부 버튼 요소를 찾을 수 없습니다.");
+            }
+        });
+
+      </script>
+      <script src="created.js" defer></script>
+</body>
+
+</html>

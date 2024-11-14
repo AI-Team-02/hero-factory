@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprite Sheet Generator</title>
+</head>
+
+<body>
+    <h1>Generate Sprite Sheet</h1>
+    <form id="spriteForm">
+        <label for="prompt">Prompt:</label>
+        <input type="text" id="prompt" name="prompt" value="dragonball, (white background), running" required>
+        <button type="submit">Generate</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("spriteForm").addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const result = document.getElementById("result");
+            result.innerHTML = ''; // 기존 결과 초기화
+
+            // 로딩 애니메이션 추가 (로딩 중임을 표시하기 위해)
+            const loadingAnimation = document.createElement("p");
+            loadingAnimation.innerText = "Generating...";
+            result.appendChild(loadingAnimation);
+
+            try {
+                const formatData = new FormData();
+                formatData.append('prompt', document.getElementById("prompt").value);
+
+                const response = await fetch('https://herofactory-service.duckdns.org/generate/sprite-sheet', {
+                    method: 'POST',
+                    body: formatData
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                // 서버에서 받아온 이미지를 표시
+                const responseBlob = await response.blob();
+                const responseImgUrl = URL.createObjectURL(responseBlob);
+                
+                const imageElement = document.createElement("img");
+                imageElement.src = responseImgUrl;
+                imageElement.alt = "Generated Sprite Sheet";
+                
+                result.innerHTML = ''; // 로딩 애니메이션 제거
+                result.appendChild(imageElement); // 이미지 추가
+
+            } catch (e) {
+                console.error('Error', e);
+                result.innerHTML = '<p style="color: red;">Failed to generate sprite sheet. Please try again.</p>';
+            }
+        });
+    </script>
+</body>
+
+</html>
